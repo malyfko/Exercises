@@ -3,22 +3,23 @@ import { generateRandomArray } from '.';
 
 describe('generateRandomArray function', () => {
   test('throws error on negative array size', (): void => {
-    const negativeArraySize = () => { generateRandomArray(-5); };
+    const negativeArraySize = (): void => { generateRandomArray(-5); };
     expect(negativeArraySize).toThrowError('Array size has to be more than 0');
   });
 
   test('throws error on 0 array size', (): void => {
-    const emptyArray = () => { generateRandomArray(0); };
+    const emptyArray = (): void => { generateRandomArray(0); };
     expect(emptyArray).toThrowError('Array size has to be more than 0');
   });
 
   test('throws error on incorrect range', (): void => {
-    const incorrectRangeArray = () => { generateRandomArray(10, 150); };
+    const incorrectRangeArray = (): void => { generateRandomArray(10, 150); };
     expect(incorrectRangeArray).toThrowError('Invalid range');
   });
 
-  test('function returns something', (): void => {
-    expect(generateRandomArray(10)).toBeDefined();
+  test('function doesn`t throw error for correct parameters', (): void => {
+    const randomArray = (): void => { generateRandomArray(10); };
+    expect(randomArray).not.toThrowError();
   });
 
   test('function returns array', (): void => {
