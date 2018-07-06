@@ -1,4 +1,4 @@
-# Exercises
+# Exercises (WIP)
 
 Repo contains different training exercises.
 
