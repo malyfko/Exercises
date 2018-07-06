@@ -1,15 +1,3 @@
-declare namespace jest {
-  interface Matchers<R> { // tslint:disable-line interface-name
-    toEachBeGraterOrEqual: (argument: number) => {};
-    toEachBeLessOrEqual: (argument: number) => {};
-    toEachBeWithingRange: (minValue: number, maxValue: number) => {};
-  }
-
-  interface It {
-    each: any;
-  }
-}
-
 const toEachBeGraterOrEqual = (received: number[], argument: number) =>  {
   if (received.every((element) => element >= argument)) {
     return {
@@ -52,7 +40,23 @@ const toEachBeWithingRange = (received: number[], minValue: number, maxValue: nu
   }
 };
 
+const toBeSorted = (received: number[]) => {
+  for (let i = 1; i <= received.length - 1; i++) {
+    if (received[i] < received[i - 1]) {
+      return {
+        message: () => 'expect array not to be sorted in ascending order',
+        pass: false,
+      };
+    }
+  }
+  return {
+    message: () => 'expect array to be sorted in ascending order',
+    pass: true,
+  };
+};
+
 expect.extend({
+  toBeSorted,
   toEachBeGraterOrEqual,
   toEachBeLessOrEqual,
   toEachBeWithingRange,
